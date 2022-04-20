@@ -407,6 +407,7 @@ void HmlgwComponent::detect_radio_module() {
         }
         std::string serial((const char*)frame.data + 1, frame.data_len - 1);
         this->hm_serial_ = serial;
+        ESP_LOGD(TAG, "module serial number %s", serial.c_str() );
         frame.dump();
     }
 
@@ -450,6 +451,7 @@ void HmlgwComponent::dump_config() {
                   network_get_address().c_str(),
 #endif
                   this->keepalive_port_);
+    ESP_LOGCONFIG(TAG, "  HM Address: %s", this->hm_serial_.c_str());
 }
 
 void HmlgwComponent::on_shutdown() {
